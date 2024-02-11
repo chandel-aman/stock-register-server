@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response, Request } from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -26,6 +26,10 @@ mongoose
   .catch((error) => {
     console.error("Error connecting to MongoDB:", error.message);
   });
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Server is live!");
+});
 
 app.use("/api/transactions", transactionRoutes);
 
